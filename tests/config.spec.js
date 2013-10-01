@@ -12,7 +12,7 @@ describe("Configuration tests", function() {
         expect(config.mode).toBe('staging');
         next();
     });
-    it ("should load local configuratons", function (next) {
+    it ("should load production configuratons", function (next) {
         var config = require('../config')('production');
         expect(config.mode).toBe('production');
         next();

@@ -8,6 +8,7 @@ var routes = require('./controllers');
 var user = require('./controllers/user');
 var http = require('http');
 var path = require('path');
+var mongoClient = require('mongodb').MongoClient;
 
 // Configuration
 var config = require('./config')();
@@ -32,6 +33,14 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 
-http.createServer(app).listen(config.port, function() {
-    console.log('Express server listening on port ' + config.port);
-});
+// The MongoDB is leading for the application. It will
+// initiate the entire application.
+mongoClient.connect('mongodb://' + config.mongo.host + ':' + config.mongo.port + '/jaztec-cms', function(err, db) {
+    if (err) {
+        console.log('No MongoDB has been found')
+    } else {
+        http.createServer(app).listen(config.port, function() {
+            console.log('Express server listening on port ' + config.port);
+        });
+    }
+})
