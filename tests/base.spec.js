@@ -1,4 +1,4 @@
-var model = require('../models/Base'),
+var Model = require('../models/Base'),
     dbMockup = {};
 describe("Base module funcionality", function() {
     it ("New model should be created", function(next){
@@ -7,7 +7,7 @@ describe("Base module funcionality", function() {
         expect(model.extend ).toBeDefined();
         next();
     });
-    it ("Should be able to extend id", function(){
+    it ("Should be able to extend id", function(next){
         var model = new Model(dbMockup);
         var otherModelType = model.extend({
             customModelMethod: function() { }
