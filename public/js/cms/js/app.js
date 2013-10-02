@@ -5,7 +5,7 @@ var jaztecCms = angular.module('jaztecCms', [
     'ngSanitize'
 ]).config(['$routeProvider', function($routeProvider){
     $routeProvider.
-        when('/:route', {templateUrl: '/cms/partials/cleared.html', controller: 'PageCtrl'}).
+        when('/:route', {templateUrl: '/partials/cleared', controller: 'PageCtrl'}).
         otherwise({redirectTo: '/home'});
 }]).config(['$locationProvider', function($location) {
     $location.hashPrefix('!');

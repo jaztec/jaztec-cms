@@ -16,7 +16,7 @@ function PageCtrl($scope, $http, $route, $routeParams, $compile, $rootScope, Pag
         if (page.PageTypeDescription == undefined) {
             return false;
         }
-        $route.current.templateUrl = '/cms/partials/pages/' + page.PageTypeDescription.toLowerCase() + '.html';
+        $route.current.templateUrl = '/partials/pages/' + page.PageTypeDescription.toLowerCase();
 
         $http.get($route.current.templateUrl).then(function(msg){
             $('#views').html($compile(msg.data)($scope));

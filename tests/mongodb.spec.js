@@ -11,6 +11,7 @@ describe("MongoDB server", function() {
             '/jaztec-cms', function(err, db)
         {
             expect(err).toBe(null);
+            exptec(db).toBeDefined();
             next();
         });
     });
@@ -23,6 +24,7 @@ describe("MongoDB server", function() {
             '/jaztec-cms', function(err, db)
         {
             expect(err).toBe(null);
+            exptec(db).toBeDefined();
             next();
         });
     });
@@ -35,6 +37,7 @@ describe("MongoDB server", function() {
             '/jaztec-cms', function(err, db)
         {
             expect(err).toBe(null);
+            exptec(db).toBeDefined();
             next();
         });
     });
