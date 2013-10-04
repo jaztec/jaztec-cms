@@ -11,7 +11,7 @@ var mongoClient = require('mongodb').MongoClient;
 /**
  * Controllers.
  */
-var user = require('./controllers/user');
+var Index = require('./controllers/Index');
 var Partials = require('./controllers/Partials');
 
 // Configuration
@@ -57,14 +57,11 @@ mongoClient.connect('mongodb://' + config.mongo.host + ':' + config.mongo.port +
          */
         console.log('Setting up routes...');
         app.all('/', injectDb, function(request, response, next){
-            controllers.index(request, response);
-            next();
+            Index.run(request, response, next);
         });
         app.all('/partials/:name', injectDb, function(request, response, next){
-            Partials.fetch(request, response);
-            next();
+            Partials.run(request, response, next);
         });
-        app.all('/users', user.list);
         /**
          * Start the server.
          */
