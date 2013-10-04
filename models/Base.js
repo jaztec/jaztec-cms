@@ -4,8 +4,14 @@ var _ = require("underscore");
  * 
  * @type {models.Base}
  */
-module.exports = {
-    extend: function(child) {
-        return _.extend({}, this, child);
+module.exports = function() {};
+module.exports.prototype = {
+    extend: function(properties) {
+        var child = module.exports;
+        child.prototype = module.exports.prototype;
+        for(var key in properties) {
+            child.prototype[key] = properties[key];
+        }
+        return child;
     }
 };
