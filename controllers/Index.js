@@ -1,7 +1,14 @@
-
+var BaseController = require('./Base'),
+    View = require('../views/Base');
 /*
  * GET index page.
  */
-exports.index = function(req, res) {
-    res.render('index', {title: 'Jaztec CMS'});
-};
+module.exports = BaseController.extend({
+    name: 'Index',
+    run: function(request, response, next) {
+        var view = new View('res', 'index');
+        view.render({
+            title: 'Jaztec CMS'
+        });
+    }
+});
