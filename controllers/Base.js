@@ -2,7 +2,7 @@ var _ = require("underscore");
 /**
  * Base type for all MvC controllers.
  * 
- * @type controllers.Base
+ * @type {controllers.Base}
  */
 module.exports = {
 	name: "base",
