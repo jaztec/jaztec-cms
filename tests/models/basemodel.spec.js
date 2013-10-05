@@ -1,4 +1,4 @@
-var Model = require("../models/Base");
+var Model = require("../../models/Base");
 describe("Base model: ", function() {
     it ("New model should be created", function(next){
         var model = new Model();

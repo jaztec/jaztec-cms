@@ -1,10 +1,11 @@
-var Service = require("../services/Base"),
+var Service = require("../../services/Base"),
     dbMockup = {};
 describe("Base service funcionality", function() {
     it ("New service should be created", function(next){
         var service = new Service(dbMockup);
         expect(service.db).toBeDefined();
-        expect(service.extend ).toBeDefined();
+        expect(service.extend).toBeDefined();
+        expect(service.find).toBeDefined();
         next();
     });
     it ("Should be able to extend it", function(next){

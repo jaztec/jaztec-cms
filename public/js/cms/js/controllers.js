@@ -13,10 +13,11 @@ function PageCtrl($scope, $http, $route, $routeParams, $compile, $rootScope, Pag
         return false;
     }
     $scope.page = Page.get({url: url}, function(page){
-        if (page.PageTypeDescription == undefined) {
+        console.log(page);
+        if (page.data.PageType[0].Description == undefined) {
             return false;
         }
-        $route.current.templateUrl = '/partials/pages/' + page.PageTypeDescription.toLowerCase();
+        $route.current.templateUrl = '/partials/pages-' + page.data.PageType[0].Description.toLowerCase();
 
         $http.get($route.current.templateUrl).then(function(msg){
             $('#views').html($compile(msg.data)($scope));

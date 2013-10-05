@@ -3,9 +3,9 @@
  * Module dependencies.
  */
 var express = require('express');
-var controllers = require('./controllers');
 var http = require('http');
 var path = require('path');
+var sys = require('sys');
 var mongoClient = require('mongodb').MongoClient;
 
 /**
@@ -13,6 +13,7 @@ var mongoClient = require('mongodb').MongoClient;
  */
 var Index = require('./controllers/Index');
 var Partials = require('./controllers/Partials');
+var Pages = require('./controllers/Pages');
 
 // Configuration
 var config = require('./config')();
@@ -38,7 +39,7 @@ if ('development' === app.get('env')) {
 // initiate the entire application.
 mongoClient.connect('mongodb://' + config.mongo.host + ':' + config.mongo.port + '/jaztec-cms', function(err, db) {
     if (err) {
-        console.log('No MongoDB has been found');
+        sys.log('No MongoDB has been found');
     } else {
         /**
          * Injects the MongoDB connection into the request object.
@@ -61,6 +62,9 @@ mongoClient.connect('mongodb://' + config.mongo.host + ':' + config.mongo.port +
         });
         app.all('/partials/:name', injectDb, function(request, response, next){
             Partials.run(request, response, next);
+        });
+        app.all('/pages/:url', injectDb, function(request, response, next){
+            Pages.run(request, response, next);
         });
         /**
          * Start the server.

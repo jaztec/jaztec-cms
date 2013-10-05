@@ -2,14 +2,14 @@
  * @param {object} db
  * @returns {void}
  */
-module.exports = function(db) {
-    this.db = db;
+module.exports = function(response) {
+    this.response = response;
 };
 
 /**
- * The base service class for the service layer of the application.
+ * The JSON view class.
  * 
- * @type {services.Base}
+ * @type {views.Json}
  */
 module.exports.prototype = {
     extend: function(properties) {
@@ -20,13 +20,10 @@ module.exports.prototype = {
         }
         return child;
     },
-    setDb: function(db) {
-        this.db = db;
-    },
-//    collection: function() {
-//
-//    },
-    find: function(callback, query) {
-        this.collection().find(query || {}).toArray(callback);
+    render: function(data) {
+        if (this.response) {
+            this.response.setHeader("Content-Type", "application/json");
+            this.response.send(JSON.stringify({data: data}));
+        }
     }
 };

@@ -1,4 +1,4 @@
-var View = require('../views/Base');
+var View = require('../../views/Base');
 describe("Base view class: ", function() {
     it("Create and render new view", function(next) {
         var responseMockup = {
